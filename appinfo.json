@@ -1,0 +1,31 @@
+{
+  "uuid": "11111111-1111-1111-1111-111111111111",
+  "shortName": "Alarm",
+  "longName": "jsfi - Alarm",
+  "companyName": "jsfi",
+  "versionCode": 1,
+  "versionLabel": "0.4",
+  "capabilities": [
+    "configurable"
+  ],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {},
+  "resources": {
+    "media": [
+      {
+        "menuIcon": true,
+        "type": "png",
+        "name": "IMAGE_MENU_ICON",
+        "file": "images/menu_icon.png"
+      }
+    ]
+  },
+  "targetPlatforms": [
+    "aplite",
+    "basalt",
+    "chalk"
+  ],
+  "sdkVersion": "3"
+}
