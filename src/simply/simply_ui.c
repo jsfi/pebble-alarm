@@ -18,7 +18,6 @@ struct SimplyStyle {
   const char* title_font;
   const char* subtitle_font;
   const char* body_font;
-  int custom_body_font_id;
 };
 
 enum ClearIndex {
@@ -45,11 +44,10 @@ static SimplyStyle STYLES[] = {
     .subtitle_font = FONT_KEY_GOTHIC_28,
     .body_font = FONT_KEY_GOTHIC_24_BOLD,
   },
-/*  [SimplyStyleId_Mono] = {
+  [SimplyStyleId_Mono] = {
     .title_font = FONT_KEY_GOTHIC_24_BOLD,
     .subtitle_font = FONT_KEY_GOTHIC_18_BOLD,
-    .custom_body_font_id = RESOURCE_ID_MONO_FONT_14,
-},*/
+  },
 };
 
 typedef struct CardClearPacket CardClearPacket;
@@ -111,10 +109,6 @@ void simply_ui_set_style(SimplyUi *self, int style_index) {
     self->ui_layer.custom_body_font = NULL;
   }
   self->ui_layer.style = &STYLES[style_index];
-  if (self->ui_layer.style->custom_body_font_id) {
-    self->ui_layer.custom_body_font = fonts_load_custom_font(
-        resource_get_handle(self->ui_layer.style->custom_body_font_id));
-  }
   mark_dirty(self);
 }
 
