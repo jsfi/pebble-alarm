@@ -1,7 +1,7 @@
 {
   "uuid": "11111111-1111-1111-1111-111111111111",
-  "shortName": "Alarm",
-  "longName": "jsfi - Alarm",
+  "shortName": "Timer",
+  "longName": "jsfi - Timer",
   "companyName": "jsfi",
   "versionCode": 1,
   "versionLabel": "1.0",

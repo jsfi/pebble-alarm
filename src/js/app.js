@@ -1,5 +1,6 @@
 var Vector2 = require('vector2');
 var UI = require('ui');
+
 var w = new UI.Window();
 var start = 10;
 
@@ -67,7 +68,7 @@ function updateTimer() {
 
 function timerEnded() {
     var card = new UI.Card({
-        title: 'Alarm ended',
+        title: 'Timer ended',
         body: '\nYour task is ready'
     });
 
