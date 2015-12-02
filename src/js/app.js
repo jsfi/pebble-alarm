@@ -1,5 +1,6 @@
 var Vector2 = require('vector2');
 var UI = require('ui');
+var Vibe = require('ui/vibe');
 
 var w = new UI.Window();
 var start = 10;
@@ -71,6 +72,7 @@ function timerEnded() {
         title: 'Timer ended',
         body: '\nYour task is ready'
     });
+    Vibe.vibrate();
 
     card.show();
 }
