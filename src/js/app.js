@@ -103,4 +103,5 @@ function countDown() {
 
 function timerEnded() {
     success.show();
+    Vibe.vibrate();
 }
