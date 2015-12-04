@@ -7,7 +7,8 @@ var w = new UI.Window({
 });
 var width = 144;
 var height = 152;
-var start = 10;
+var start = 120;
+var step = 10;
 
 var timerRectStart = new Vector2(width, height);
 var timerRectStop = new Vector2(width, 0);
@@ -44,14 +45,14 @@ w.show();
 w.on('click', function(e) {
     switch(e.button) {
         case 'up':
-            timer += 10;
+            timer += step;
             updateTimer();
         break;
         case 'select':
             toggleTimer();
         break;
         case 'down':
-            timer -= 10;
+            timer -= step;
             if (timer < 0) {
                 timer = 0;
             }
@@ -69,10 +70,25 @@ function toggleTimer() {
 }
 
 function startTimer() {
-    countDown();
+    var animationHeight = height;
+    var animationStep = height / (timer / step);
 
+    countDown();
     w.insert(0, timerRect);
-    timerRect.animate({ size: timerRectStop, easing: 'linear' }, timer * 1000);
+
+    while(animationHeight > 0) {
+        animationHeight -= animationStep;
+
+        timerRect.animate({}, 0);
+
+        (function(nextHeight) {
+            var nextSize = new Vector2(width, Math.round(nextHeight));
+            timerRect.queue(function(next) {
+                timerRect.animate({ size: nextSize, easing: 'linear' }, step * 1000);
+                next();
+            });
+        }(animationHeight));
+    }
 }
 
 function stopTimer() {
