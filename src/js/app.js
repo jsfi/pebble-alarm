@@ -13,7 +13,7 @@ var step = 10;
 var timerRectStart = new Vector2(width, height);
 var timerRectStop = new Vector2(width, 0);
 var timerRect = new UI.Rect({
-    backgroundColor: 'black',
+    backgroundColor: 'grey',
     position: new Vector2(0,0),
     size: timerRectStart
 });
