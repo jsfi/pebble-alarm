@@ -1,13 +1,14 @@
 var Vector2 = require('vector2');
 var UI = require('ui');
 var Vibe = require('ui/vibe');
+var Settings = require('settings');
 
 var w = new UI.Window({
     backgroundColor: 'white'
 });
 var width = 144;
 var height = 152;
-var start = 120;
+var start = Settings.data('start') || 120;
 var step = 10;
 
 var timerRectStart = new Vector2(width, height);
@@ -40,21 +41,36 @@ w.show();
 w.on('click', function(e) {
     switch(e.button) {
         case 'up':
-            timer += step;
+            setTimer(step);
             updateTimer();
         break;
         case 'select':
             toggleTimer();
         break;
         case 'down':
-            timer -= step;
-            if (timer < 0) {
-                timer = 0;
-            }
+            setTimer(-step);
             updateTimer();
         break;
     }
 });
+
+function setTimer(step) {
+    var updateStart = false;
+    if (start === timer) {
+        updateStart = true;
+    }
+
+    timer += step;
+
+    if (timer < 0) {
+        timer = 0;
+    }
+
+    if (updateStart) {
+        start = timer;
+        Settings.data('start', start);
+    }
+}
 
 function toggleTimer() {
     if (timerRun) {
