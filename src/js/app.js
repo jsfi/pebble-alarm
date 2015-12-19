@@ -32,8 +32,8 @@ var timerText = new UI.Text({
 w.add(timerText);
 
 var success = new UI.Card({
-    title: 'Timer ended',
-    body: '\nYour task is ready'
+    title: 'Timer ended'/*,
+    body: 'Your task is ready'*/
 });
 
 w.show();
