@@ -131,4 +131,8 @@ function countDown() {
 function timerEnded() {
     success.show();
     Vibe.vibrate();
+
+    setTimeout(function() {
+        success.body('Task is ready');
+    }, 500);
 }
