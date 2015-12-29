@@ -84,6 +84,7 @@ StageElement.prototype.animate = function(field, value, duration) {
     util2.copy(animateDef, this.state);
   }
   if (this._queue.length === 0) {
+    this.queue(true);
     animate.call(this);
   } else {
     this.queue(animate);
@@ -97,6 +98,7 @@ StageElement.prototype.queue = function(callback) {
 
 StageElement.prototype.dequeue = function() {
   var callback = this._queue.shift();
+  if (callback === true) callback = this._queue.shift();
   if (!callback) { return; }
   callback.call(this, this.dequeue.bind(this));
 };

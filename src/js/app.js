@@ -32,8 +32,8 @@ var timerText = new UI.Text({
 w.add(timerText);
 
 var success = new UI.Card({
-    title: 'Timer ended'/*,
-    body: 'Your task is ready'*/
+    title: 'Timer ended',
+    body: 'Your task is ready'
 });
 
 w.show();
@@ -90,14 +90,9 @@ function startTimer() {
     while(animationHeight > 0) {
         animationHeight -= animationStep;
 
-        timerRect.animate({}, 0);
-
         (function(nextHeight) {
             var nextSize = new Vector2(width, Math.round(nextHeight));
-            timerRect.queue(function(next) {
-                timerRect.animate({ size: nextSize, easing: 'linear' }, step * 1000);
-                next();
-            });
+            timerRect.animate({ size: nextSize, easing: 'linear' }, step * 1000);
         }(animationHeight));
     }
 }
@@ -131,8 +126,4 @@ function countDown() {
 function timerEnded() {
     success.show();
     Vibe.vibrate();
-
-    setTimeout(function() {
-        success.body('Task is ready');
-    }, 500);
 }
