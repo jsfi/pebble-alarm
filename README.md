@@ -10,5 +10,6 @@
   - queue is used because multiple animates do not queue like documented
   - FIX: change ui/element.animate function so it works as documented
 - refactor ui/element.animate fix and push to pebblejs/pebblejs
+  - add state (in animation) so animations will be queued if called multiple time on same element
 
 - add background functionality
