@@ -69,6 +69,7 @@ StageElement.prototype.remove = function(broadcast) {
 
 StageElement.prototype._animate = function(animateDef, duration) {
   if (this.parent === WindowStack.top()) {
+    this._animating = true;
     simply.impl.stageAnimate(this._id(), this.state,
         animateDef, duration || 400, animateDef.easing || 'easeInOut');
   }
@@ -83,8 +84,7 @@ StageElement.prototype.animate = function(field, value, duration) {
     this._animate(animateDef, duration);
     util2.copy(animateDef, this.state);
   }
-  if (this._queue.length === 0) {
-    this.queue(true);
+  if (!this._animating && this._queue.length === 0) {
     animate.call(this);
   } else {
     this.queue(animate);
@@ -98,13 +98,13 @@ StageElement.prototype.queue = function(callback) {
 
 StageElement.prototype.dequeue = function() {
   var callback = this._queue.shift();
-  if (callback === true) callback = this._queue.shift();
   if (!callback) { return; }
   callback.call(this, this.dequeue.bind(this));
 };
 
 StageElement.emitAnimateDone = function(id) {
   var wind = WindowStack.top();
+  this._animating = false;
   if (!wind || !wind._dynamic) { return; }
   wind.each(function(element) {
     if (element._id() === id) {

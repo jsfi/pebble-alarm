@@ -11,5 +11,7 @@
   - FIX: change ui/element.animate function so it works as documented
 - refactor ui/element.animate fix and push to pebblejs/pebblejs
   - add state (in animation) so animations will be queued if called multiple time on same element
+  - added state and tested with emulator
+  - test with watch and create diff for pull request
 
 - add background functionality
