@@ -1,6 +1,6 @@
-var Vector2 = require('vector2');
 var UI = require('ui');
 var Vibe = require('ui/vibe');
+var Vector2 = require('vector2');
 var Settings = require('settings');
 
 var w = new UI.Window({
